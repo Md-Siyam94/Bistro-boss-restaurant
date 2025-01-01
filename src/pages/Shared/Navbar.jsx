@@ -1,11 +1,15 @@
+import { Link, NavLink } from "react-router-dom";
 
 
 const Navbar = () => {
-
-    const navRoutes = <>
-        <li><a>Item 1</a></li>
-        <li><a>Item 3</a></li>
+    const routerOptions = <>
+        <li><NavLink to={"/"} className={({ isActive }) => isActive ? "text-yellow-300" : "text-white"}>HOME</NavLink></li>
+        <li><NavLink to={"fd"} className={({ isActive }) => isActive ? "text-yellow-300" : "text-white"} >CONTACT US</NavLink></li>
+        <li><NavLink to={"dfd"} className={({ isActive }) => isActive ? "text-yellow-300" : "text-white"}>DASHBOARD</NavLink></li>
+        <li><NavLink to={"/our-menu"} className={({ isActive }) => isActive ? "text-yellow-300" : "text-white"}>OUR MENU</NavLink></li>
+        <li><NavLink to={"df"} className={({ isActive }) => isActive ? "text-yellow-300" : "text-white"}>OUR SHOP</NavLink></li>
     </>
+
     return (
         <div className="navbar fixed z-50 bg-opacity-30 max-w-screen-2xl mx-auto bg-black text-white px-10">
             <div className="navbar-start">
@@ -27,17 +31,19 @@ const Navbar = () => {
                     <ul
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                        {navRoutes}
+                       {routerOptions}
                     </ul>
                 </div>
                 <a className="btn btn-ghost text-xl">BISTRO BOSS <br />Restaurant</a>
             </div>
-            <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
-                   {navRoutes}
-                </ul>
-            </div>
-            <div className="navbar-end">
+
+            <div className="navbar-end gap-2">
+                <div className="navbar-center hidden lg:flex font-semibold">
+                    <ul className="menu menu-horizontal px-1 "
+                    >
+                        {routerOptions}
+                    </ul>
+                </div>
                 <a className="btn">Button</a>
             </div>
         </div>

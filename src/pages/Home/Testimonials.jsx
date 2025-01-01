@@ -28,7 +28,7 @@ const Testimonials = () => {
 
 
     return (
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-6xl my-20 mx-auto">
             <div>
                 <SectionTitle subHeading={'What Our Clients Say'} heading={"TESTIMONIALS"}> </SectionTitle>
             </div>
