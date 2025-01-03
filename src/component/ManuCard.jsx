@@ -1,12 +1,12 @@
 
 
-const PopularManuCard = ({ manu }) => {
+const ManuCard = ({ manu }) => {
     const { name, recipe, image, category, price } = manu || {}
     return (
         <div className="flex gap-4">
             <div>
                 <img
-                    className="h-28 w-44 rounded-tr-full rounded-br-full rounded-bl-full "
+                    className="h-28 min-w-32 rounded-tr-full rounded-br-full rounded-bl-full object-cover"
                     src={image} alt="" />
             </div>
             <div>
@@ -14,10 +14,10 @@ const PopularManuCard = ({ manu }) => {
                     <h2 className="font-semibold text-2xl">{name} ____________</h2>
                     <p className="font-bold text-yellow-600">${price}</p>
                 </div>
-                <p >{recipe}</p>
+                <p className="opacity-70">{recipe}</p>
             </div>
         </div>
     );
 };
 
-export default PopularManuCard;
+export default ManuCard;

@@ -1,11 +1,12 @@
 import Banner from "./Banner";
-import BristoBoss from "../../component/BristoBoss";
+
 import CategorySlider from "./CategorySlider";
-import BristoBossImg from '../../assets/home/chef-service.jpg'
+import bristoBoss from '../../assets/home/chef-service.jpg'
 import PopularManu from "./PopularManu";
 import ChefRecommends from "./ChefRecommends";
 import Featured from "./Featured";
 import Testimonials from "./Testimonials";
+import Cover from "../../component/Cover";
 
 
 const Home = () => {
@@ -17,8 +18,8 @@ const Home = () => {
             <section>
                 <CategorySlider></CategorySlider>
             </section>
-            <section>
-                <BristoBoss bgImg={BristoBossImg} heading={"Bristo Boss"} subHeading={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, libero accusamus laborum deserunt ratione dolor officiis praesentium! Deserunt magni aperiam dolor eius dolore at, nihil iusto ducimus incidunt quibusdam nemo."}></BristoBoss>
+            <section className="max-w-6xl my-20 mx-auto ">
+               <Cover bgImage={bristoBoss} heading={'Bistro Boss'} subHeading={'Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, libero accusamus laborum deserunt ratione dolor officiis praesentium! Deserunt magni aperiam dolor eius dolore at, nihil iusto ducimus incidunt quibusdam nemo.'}></Cover>
             </section>
             <section>
                 <PopularManu></PopularManu>

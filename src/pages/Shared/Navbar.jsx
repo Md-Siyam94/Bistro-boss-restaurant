@@ -3,11 +3,11 @@ import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
     const routerOptions = <>
-        <li><NavLink to={"/"} className={({ isActive }) => isActive ? "text-yellow-300" : "text-white"}>HOME</NavLink></li>
-        <li><NavLink to={"fd"} className={({ isActive }) => isActive ? "text-yellow-300" : "text-white"} >CONTACT US</NavLink></li>
-        <li><NavLink to={"dfd"} className={({ isActive }) => isActive ? "text-yellow-300" : "text-white"}>DASHBOARD</NavLink></li>
-        <li><NavLink to={"/our-menu"} className={({ isActive }) => isActive ? "text-yellow-300" : "text-white"}>OUR MENU</NavLink></li>
-        <li><NavLink to={"df"} className={({ isActive }) => isActive ? "text-yellow-300" : "text-white"}>OUR SHOP</NavLink></li>
+        <li><Link to={"/"} >HOME</Link></li>
+        <li><Link to={"fd"}  >CONTACT US</Link></li>
+        <li><Link to={"dfd"} >DASHBOARD</Link></li>
+        <li><Link to={"/our-menu"} >OUR MENU</Link></li>
+        <li><Link to={"/order/salad"} >OUR SHOP</Link></li>
     </>
 
     return (

@@ -1,19 +1,15 @@
-import { useEffect, useState } from "react";
+
 import SectionTitle from "../../component/SectionTitle";
-import PopularManuCard from "../../component/PopularManuCard";
+
+import useMenu from "../../hooks/useMenu";
+import ManuCard from "../../component/ManuCard";
 
 
 const PopularManu = () => {
-    const [manus, setManues] = useState([])
 
-    useEffect(()=>{
-        fetch(`menu.json`)
-        .then(res=> res.json())  
-        .then(data=>{
-            const popularData = data.filter(manu=> manu.category === "popular")
-            setManues(popularData)})
-    },[])
-    console.log(manus);
+    const { menu } = useMenu();
+    const popular = menu.filter(e => e.category === "popular")
+
     return (
         <div className="max-w-6xl my-20 mx-auto">
             <div>
@@ -21,7 +17,7 @@ const PopularManu = () => {
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 {
-                    manus.map(manu => <PopularManuCard key={manu._id} manu={manu}></PopularManuCard>)
+                    popular.map(manu => <ManuCard key={manu._id} manu={manu}></ManuCard>)
                 }
             </div>
             <div className="grid justify-center my-9">
@@ -30,7 +26,7 @@ const PopularManu = () => {
             <div className="py-20 grid justify-center bg-gray-900">
                 <h2 className="text-white font-semibold lg:text-5xl">Call Us: +880 <span className="font-serif">01789478967</span></h2>
             </div>
-            
+
         </div>
     );
 };
