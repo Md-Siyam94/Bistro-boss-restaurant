@@ -1,15 +1,23 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
-
+import { AuthContext } from "../../provider/AuthProvider";
+import Cart from '../../assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png'
+import { GrCart } from "react-icons/gr";
 
 const Navbar = () => {
+    const {user,logOutUser} = useContext(AuthContext)
     const routerOptions = <>
         <li><Link to={"/"} >HOME</Link></li>
         <li><Link to={"fd"}  >CONTACT US</Link></li>
         <li><Link to={"dfd"} >DASHBOARD</Link></li>
         <li><Link to={"/our-menu"} >OUR MENU</Link></li>
         <li><Link to={"/order/salad"} >OUR SHOP</Link></li>
+        <li><Link to={"/order/salad"} ><GrCart className="text-2xl"></GrCart></Link></li>
     </>
 
+    const handleLogOut =()=>{
+        logOutUser()
+    }
     return (
         <div className="navbar fixed z-50 bg-opacity-30 max-w-screen-2xl mx-auto bg-black text-white px-10">
             <div className="navbar-start">
@@ -44,7 +52,21 @@ const Navbar = () => {
                         {routerOptions}
                     </ul>
                 </div>
-                <a className="btn">Button</a>
+                {/* <div>
+                    {
+                       
+                    }
+                </div> */}
+                <div>
+                   {
+                    user ? <div>
+                    <Link onClick={handleLogOut} className="btn">Log out</Link>
+                    </div>: <div className="flex gap-2 items-center">
+                     <Link to={"/login"}><button className="btn">Login</button></Link>
+                     <Link to={"/signup"}><button className="btn flex ">Sign up</button></Link>
+                    </div>
+                   }
+                </div>
             </div>
         </div>
     );
