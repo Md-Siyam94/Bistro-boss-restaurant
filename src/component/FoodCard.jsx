@@ -2,16 +2,18 @@ import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../provider/useAuth";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../provider/useAxiosSecure";
+import useCart from "../provider/useCart";
 // import axios from "axios";
 
 
 const FoodCard = ({item}) => {
     const {user} = useAuth();
+    const {refetch} = useCart()
     const navigate = useNavigate();
     const location = useLocation();
     const axiosSecure = useAxiosSecure()
     const { name, recipe, image, category, price, _id } = item || {}
-    const handleAddToCart=(food)=>{
+    const handleAddToCart=()=>{
         if(user && user?.email){
             const cartItem={
                 menuId: _id,
@@ -23,7 +25,7 @@ const FoodCard = ({item}) => {
             }
             axiosSecure.post(`/carts`, cartItem)
             .then(res=>{
-                console.log(res.data);
+                // console.log(res.data);
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
@@ -31,6 +33,8 @@ const FoodCard = ({item}) => {
                     showConfirmButton: false,
                     timer: 1500
                   });
+                //   refetch the ui to update the Item count on navbar
+                  refetch()
             })
 
         }
@@ -63,7 +67,7 @@ const FoodCard = ({item}) => {
                 <h2 className="font-semibold pt-4 text-2xl text-center">{name}</h2>
                 <p className="my-2 text-center">{recipe}</p>
                 <div className="grid justify-center">
-                    <button onClick={()=>handleAddToCart(item)} className="uppercase text-lg my-6 font-semibold py-3 px-5 border border-yellow-600 border-b-4 hover:bg-gray-950 hover:text-white rounded-lg">Add to cart</button>
+                    <button onClick={handleAddToCart} className="uppercase text-lg my-6 font-semibold py-3 px-5 border border-yellow-600 border-b-4 hover:bg-gray-950 hover:text-white rounded-lg">Add to cart</button>
                 </div>
 
             </div>

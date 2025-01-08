@@ -3,19 +3,27 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import Cart from '../../assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png'
 import { GrCart } from "react-icons/gr";
+import useCart from "../../provider/useCart";
 
 const Navbar = () => {
-    const {user,logOutUser} = useContext(AuthContext)
+    const { user, logOutUser } = useContext(AuthContext)
+    const {cart} = useCart()
     const routerOptions = <>
         <li><Link to={"/"} >HOME</Link></li>
         <li><Link to={"fd"}  >CONTACT US</Link></li>
         <li><Link to={"dfd"} >DASHBOARD</Link></li>
         <li><Link to={"/our-menu"} >OUR MENU</Link></li>
         <li><Link to={"/order/salad"} >OUR SHOP</Link></li>
-        <li><Link to={"/order/salad"} ><GrCart className="text-2xl"></GrCart></Link></li>
+        <li><Link to={"/dashboard/cart"} >
+            <div className="indicator">
+                <span className="indicator-item badge text-red-500   bg-opacity-30">+{cart.length}</span>
+                <button> <GrCart className="text-2xl"></GrCart></button>
+            </div>
+           
+        </Link></li>
     </>
 
-    const handleLogOut =()=>{
+    const handleLogOut = () => {
         logOutUser()
     }
     return (
@@ -39,7 +47,7 @@ const Navbar = () => {
                     <ul
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                       {routerOptions}
+                        {routerOptions}
                     </ul>
                 </div>
                 <a className="btn btn-ghost text-xl">BISTRO BOSS <br />Restaurant</a>
@@ -58,14 +66,14 @@ const Navbar = () => {
                     }
                 </div> */}
                 <div>
-                   {
-                    user ? <div>
-                    <Link onClick={handleLogOut} className="btn">Log out</Link>
-                    </div>: <div className="flex gap-2 items-center">
-                     <Link to={"/login"}><button className="btn">Login</button></Link>
-                     <Link to={"/signup"}><button className="btn flex ">Sign up</button></Link>
-                    </div>
-                   }
+                    {
+                        user ? <div>
+                            <Link onClick={handleLogOut} className="btn">Log out</Link>
+                        </div> : <div className="flex gap-2 items-center">
+                            <Link to={"/login"}><button className="btn">Login</button></Link>
+                            <Link to={"/signup"}><button className="btn flex ">Sign up</button></Link>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
