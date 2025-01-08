@@ -106,7 +106,8 @@ const Login = () => {
                             {/* <button  className="btn btn-xs btn-outline mt-4">Verify</button> */}
                         </div>
                         <div className="form-control mt-6">
-                            <button disabled={disabled} className="btn bg-[#D1A054B3] hover:bg-[#D1A054]">Login</button>
+                            {/* TODDO: disabled the sign up btn */}
+                            <button disabled={false} className="btn bg-[#D1A054B3] hover:bg-[#D1A054]">Login</button>
                         </div>
                     </form>
                     <div>
