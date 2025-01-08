@@ -8,7 +8,7 @@ import useCart from "../provider/useCart";
 
 const FoodCard = ({item}) => {
     const {user} = useAuth();
-    const {refetch} = useCart()
+    const [refetch] = useCart()
     const navigate = useNavigate();
     const location = useLocation();
     const axiosSecure = useAxiosSecure()
