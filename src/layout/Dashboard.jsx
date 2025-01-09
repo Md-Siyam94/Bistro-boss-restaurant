@@ -4,6 +4,9 @@ import { NavLink, Outlet } from "react-router-dom";
 
 
 const Dashboard = () => {
+    // TODO: get isAdmin value to the database
+
+    const isAdmin = true;
     return (
         <div className="flex">
             {/* dashboard side bar */}

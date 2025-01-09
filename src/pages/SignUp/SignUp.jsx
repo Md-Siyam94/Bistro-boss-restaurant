@@ -5,9 +5,12 @@ import { useContext } from "react";
 // import auth from "../../firebase_init";
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../provider/useAxiosPublic";
+import SocialLogin from "../Shared/SocialLogin";
 
 
 const SignUp = () => {
+    const axiosPublic = useAxiosPublic()
     const { signupUser, updateUserProfile } = useContext(AuthContext)
     const navigate = useNavigate()
     const {
@@ -19,30 +22,41 @@ const SignUp = () => {
         // console.log(data);
         const photoURL = data.photoURL;
         const name = data.name;
-        const updateDetails = {displayName:name,photoURL: photoURL}
+        const updateDetails = { displayName: name, photoURL: photoURL }
         signupUser(data.email, data.password)
             .then(result => {
-                console.log("user from sign up", result);
+                // console.log("user from sign up", result);
                 updateUserProfile(updateDetails)
                     .then(() => {
-                        navigate("/")
-                        Swal.fire({
-                            title: "Login successfully!",
-                            showClass: {
-                                popup: `
-                        animate__animated
-                        animate__fadeInUp
-                        animate__faster
-                      `
-                            },
-                            hideClass: {
-                                popup: `
-                        animate__animated
-                        animate__fadeOutDown
-                        animate__faster
-                      `
-                            }
-                        });
+                        const userInfo = {
+                            name: data.name,
+                            email: data.email
+                        }
+                        axiosPublic.post("/users", userInfo)
+                            .then(res => {
+                                if (res?.data?.insertedId) {
+                                    console.log("user added to the data base");
+                                    navigate("/")
+                                    Swal.fire({
+                                        title: "Login successfully!",
+                                        showClass: {
+                                            popup: `
+                                animate__animated
+                                animate__fadeInUp
+                                animate__faster
+                              `
+                                        },
+                                        hideClass: {
+                                            popup: `
+                                animate__animated
+                                animate__fadeOutDown
+                                animate__faster
+                              `
+                                        }
+                                    });
+                                }
+                            })
+
                     })
                     .catch(err => {
                         console.log("error from update profile", err.message);
@@ -88,7 +102,7 @@ const SignUp = () => {
                             <label className="label">
                                 <span className="label-text">Photo</span>
                             </label>
-                            <input type="text" {...register("photoURL", { required: true })}  placeholder="photo url" className="input input-bordered" />
+                            <input type="text" {...register("photoURL", { required: true })} placeholder="photo url" className="input input-bordered" />
                             <div className="mt-2">
                                 {errors.photoURL && <span className="text-red-500">please fill this field!</span>}
                             </div>
@@ -137,12 +151,16 @@ const SignUp = () => {
                             </label>
                         </div>
 
-                        <div className="form-control mt-6">
+                        <div className="form-control mt-4">
                             <button className="btn bg-[#D1A054B3] hover:bg-[#D1A054]">Sign up</button>
                         </div>
                     </form>
-                    <div>
-                        <p><small>Already have an account</small><Link to={"/login"}>Login</Link></p>
+                    <div className="text-center">
+                        <p>Already have an account ? <Link to={"/login"} className="text-violet-900 font-bold">Login</Link></p>
+                    </div>
+                    <div className="divider"></div>
+                    <div className="px-8 mb-8">
+                        <SocialLogin></SocialLogin>
                     </div>
                 </div>
             </div>

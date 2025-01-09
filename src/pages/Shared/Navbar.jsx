@@ -7,7 +7,7 @@ import useCart from "../../provider/useCart";
 
 const Navbar = () => {
     const { user, logOutUser } = useContext(AuthContext)
-    const {cart} = useCart()
+    const [cart] = useCart()
     const routerOptions = <>
         <li><Link to={"/"} >HOME</Link></li>
         <li><Link to={"fd"}  >CONTACT US</Link></li>
