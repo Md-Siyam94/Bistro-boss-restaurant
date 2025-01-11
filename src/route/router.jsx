@@ -9,8 +9,9 @@ import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import PrivetRoute from "../provider/PrivetRoute";
 import Dashboard from "../layout/Dashboard";
-import Cart from "../pages/Dashboard/Cart/Cart";
-import Users from "../pages/Dashboard/AllUsers/Users";
+import Cart from "../pages/Dashboard/User/Cart/Cart";
+import Users from "../pages/Dashboard/Admin/AllUsers/Users";
+
 
   const router = createBrowserRouter([
     {

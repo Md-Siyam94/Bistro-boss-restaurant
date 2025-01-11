@@ -1,9 +1,9 @@
 import { GrTrash } from "react-icons/gr";
-import SectionTitle from "../../../component/SectionTitle";
-import useCart from "../../../provider/useCart";
+import SectionTitle from "../../../../component/SectionTitle";
+import useCart from "../../../../provider/useCart";
 import Swal from "sweetalert2";
 import axios from "axios";
-import useAxiosSecure from "../../../provider/useAxiosSecure";
+import useAxiosSecure from "../../../../provider/useAxiosSecure";
 
 
 const Cart = () => {
