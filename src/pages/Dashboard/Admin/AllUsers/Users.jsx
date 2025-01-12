@@ -94,10 +94,11 @@ const Users = () => {
                                         {user?.name}
 
                                     </td>
-                                    <td>${user?.email}</td>
+                                    <td>{user?.email}</td>
                                     <td>
-                                        {/* TODO: Make what is the role of user */}
-                                        <button  onClick={() => handleMakeAdmin(user._id)} className="py-2 px-2 rounded-lg bg-yellow-700 text-white text-xl"><FaUsers></FaUsers></button>
+                                       {
+                                        user.role === "admin" ? "Admin" :  <button  onClick={() => handleMakeAdmin(user._id)} className="py-2 px-2 rounded-lg bg-yellow-700 text-white text-xl"><FaUsers></FaUsers></button>
+                                       }
                                     </td>
                                     <th>
                                         <button onClick={() => handleDelete(user._id)} className="py-2 px-2 rounded-lg bg-red-500 text-white text-xl"><GrTrash></GrTrash></button>

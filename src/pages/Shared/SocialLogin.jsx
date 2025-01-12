@@ -25,12 +25,12 @@ const SocialLogin = () => {
                         navigate(location?.state ? location?.state : "/")
                     })
                     .catch(err=>{
-                        console.log("error from google login by saving user data", err.message);
+                        console.log("error from google login by saving user data", err);
                     })
 
             })
             .catch(err => {
-                console.log("error from google login", err.message);
+                console.log("error from google login", err);
             })
     }
     return (

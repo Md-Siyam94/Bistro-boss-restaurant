@@ -54,7 +54,7 @@ const FoodCard = ({item}) => {
                 }
               });
         }
-        console.log(food, user?.email);
+        // console.log( user?.email);
     }
     return (
         <div>
