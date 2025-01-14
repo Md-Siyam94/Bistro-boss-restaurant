@@ -3,11 +3,13 @@ import SectionTitle from "../../../../component/SectionTitle";
 import useCart from "../../../../provider/useCart";
 import Swal from "sweetalert2";
 import axios from "axios";
-import useAxiosSecure from "../../../../provider/useAxiosSecure";
+
+import { Link } from "react-router-dom";
+import useAxiosPublic from "../../../../provider/useAxiosPublic";
 
 
 const Cart = () => {
-    const axiosSecure = useAxiosSecure()
+    const axiosPublic = useAxiosPublic()
     const [cart ,refetch] = useCart()
     const totalPrice = cart.reduce((pre, cur) => pre + cur?.price, 0)
 
@@ -23,7 +25,7 @@ const Cart = () => {
             confirmButtonText: "Delete"
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosSecure.delete(`/carts/${id}`)
+                axiosPublic.delete(`/carts/${id}`)
                     .then(res => {
                         if (res.data.deletedCount > 0) {
                             refetch()
@@ -45,7 +47,12 @@ const Cart = () => {
                 <div className="flex justify-evenly">
                     <h2 className="text-3xl">Total orders: {cart.length}</h2>
                     <h2 className="text-3xl">Total orders: ${totalPrice}</h2>
-                    <button className="btn bg-yellow-700 bg-opacity-60 mb-4 text-white">Pay</button>
+                    {
+                       cart.length ? <Link to={"/dashboard/payment"}>
+                        <button  className="btn bg-yellow-700 bg-opacity-60 mb-4 text-white">Pay</button>
+                        </Link> :
+ <button disabled className="btn bg-yellow-700 bg-opacity-60 mb-4 text-white">Pay</button>
+                    }
                 </div>
                 <div className="overflow-x-auto ">
                     <table className="table">

@@ -1,16 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "./useAxiosSecure";
+import useAxiosPublic from "./useAxiosPublic";
 import useAuth from "./useAuth";
 
 
 const useCart = () => {
-    const axiosSecure = useAxiosSecure()
+    const axiosPublic = useAxiosPublic()
     const {user} = useAuth()
     // use Tenstack query
     const { refetch,data: cart = []}= useQuery({
         queryKey: ['cart', user?.email],
         queryFn: async ()=>{
-            const res = await axiosSecure.get(`/carts?email=${user?.email}`)
+            const res = await axiosPublic.get(`/carts?email=${user?.email}`)
             return res.data
         }
     })

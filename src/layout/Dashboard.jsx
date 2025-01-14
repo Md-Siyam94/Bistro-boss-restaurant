@@ -51,7 +51,7 @@ const Dashboard = () => {
                                         User Home</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to={"/dashboard/reservation"}>
+                                    <NavLink to={"/dashboard/payment"}>
                                         <GrCalendar></GrCalendar>
                                         Reservation</NavLink>
                                 </li>
