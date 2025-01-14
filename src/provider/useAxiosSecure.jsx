@@ -31,7 +31,7 @@ const useAxiosSecure = () => {
     axiosSecure.interceptors.response.use(function (response) {
         return response
     }, async (error) => {
-        const status = error.response.status;
+        const status = error.response?.status;
         // console.log("status code from line 33",status);
         if (status === 401 || status === 403) {
             console.log("You have to logout now");

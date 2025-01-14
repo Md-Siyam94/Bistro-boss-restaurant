@@ -5,11 +5,11 @@ import Swal from "sweetalert2";
 import axios from "axios";
 
 import { Link } from "react-router-dom";
-import useAxiosPublic from "../../../../provider/useAxiosPublic";
+import useAxiosSecure from "../../../../provider/useAxiosSecure";
 
 
 const Cart = () => {
-    const axiosPublic = useAxiosPublic()
+    const axiosSecure = useAxiosSecure()
     const [cart ,refetch] = useCart()
     const totalPrice = cart.reduce((pre, cur) => pre + cur?.price, 0)
 
@@ -25,7 +25,7 @@ const Cart = () => {
             confirmButtonText: "Delete"
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosPublic.delete(`/carts/${id}`)
+                axiosSecure.delete(`/carts/${id}`)
                     .then(res => {
                         if (res.data.deletedCount > 0) {
                             refetch()
