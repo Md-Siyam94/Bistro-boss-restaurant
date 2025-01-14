@@ -1,5 +1,5 @@
-import { GrBookmark, GrCalendar, GrCart, GrHome, GrMail, GrMenu, GrShop, } from "react-icons/gr";
-import { FaUsers, FaUtensils } from "react-icons/fa6";
+import { GrBookmark, GrCalendar, GrCart, GrGoogleWallet, GrHome, GrMail, GrMenu, GrShop, } from "react-icons/gr";
+import { FaUsers, FaUtensils, FaWallet } from "react-icons/fa6";
 import { TfiMenuAlt } from "react-icons/tfi";
 import { BiMessageAdd } from "react-icons/bi";
 import { NavLink, Outlet } from "react-router-dom";
@@ -54,6 +54,11 @@ const Dashboard = () => {
                                     <NavLink to={"/dashboard/payment"}>
                                         <GrCalendar></GrCalendar>
                                         Reservation</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to={"/dashboard/payment-history"}>
+                                        <FaWallet></FaWallet>
+                                        Payment History</NavLink>
                                 </li>
                                 <li>
                                     <NavLink to={"/dashboard/cart"}>
