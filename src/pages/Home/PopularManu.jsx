@@ -7,7 +7,7 @@ import ManuCard from "../../component/ManuCard";
 
 const PopularManu = () => {
 
-    const { menu } = useMenu();
+    const [ menu ] = useMenu();
     const popular = menu.filter(e => e.category === "popular")
 
     return (

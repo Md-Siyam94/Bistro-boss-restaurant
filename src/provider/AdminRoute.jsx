@@ -12,7 +12,7 @@ const AdminRoute = ({children}) => {
    
 
     if(loading || isAdminLoading ){
-        return <div className="min-h-[calc(100vh-299px)] grid justify-center items-center "> <HashLoader
+        return <div className="min-h-screen grid justify-center items-center "> <HashLoader
         // color={color}
         loading={loading}
         // cssOverride={override}
